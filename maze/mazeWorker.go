@@ -34,7 +34,7 @@ func (r *MazeRepository) GetByMazeID(mazeID string) (*Maze, error) {
 }
 func (r *MazeRepository) Get() (Mazes, error) {
 	var mazes Mazes
-	err := r.collection().Find(nil).All(mazes)
+	err := r.collection().Find(nil).All(&mazes)
 	if err != nil {
 		return nil, err
 	}
