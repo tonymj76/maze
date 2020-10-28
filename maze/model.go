@@ -1,30 +1,30 @@
 package maze
 
-type Coordinate struct {
-	X, Y string
-}
+import "github.com/google/uuid"
 
-type Path struct {
-	Distance float32
+type Coordinate struct {
+	X int32 `json:"x"`
+	Y int32 `json:"y"`
 }
 
 type Spot struct {
-	Name         string
-	Coordinates  Coordinate
-	AmountOfGold int32 `json:"amount_of_gold"`
+	Name         string     `json:"name"`
+	Coordinates  Coordinate `json:"coordinates"`
+	AmountOfGold int32      `json:"amount_of_gold"`
 }
 
 type Quadrant struct {
-	TopRight    Coordinate `json:"top_right"`
-	TopLeft     Coordinate `json:"top_left"`
-	BottomRight Coordinate `json:"bottom_right"`
-	BottomLeft  Coordinate `json:"bottom_left"`
+	TopRight    Coordinate `json:"top_right,omitempty"`
+	TopLeft     Coordinate `json:"top_left,omitempty"`
+	BottomRight Coordinate `json:"bottom_right,omitempty"`
+	BottomLeft  Coordinate `json:"bottom_left,omitempty"`
 }
 
 type Maze struct {
-	Path     Path
-	Spots    []Spot
-	Quadrant Quadrant
+	ID           uuid.UUID `json:"id"`
+	PathDistance float32   `json:"path_distance"`
+	Spots        []Spot    `json:"spots"`
+	Quadrant     Quadrant  `json:"quandrant"`
 }
 
 type Mazes []*Maze

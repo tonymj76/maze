@@ -30,11 +30,13 @@ func SetupRouter(service Service) *gin.Engine {
 		)
 	}))
 	router.Use(gin.Recovery())
-	mazeAPI := router.Group("/api/v1/merchants")
-	mazeAPI.POST("/", service.CreateHandler)
-	mazeAPI.DELETE("/", service.DeleteIDHandler)
-	mazeAPI.PATCH("/", service.UpdateHandler)
-	mazeAPI.GET("/", service.GetHandler)
-	mazeAPI.GET("/", service.GetIDHandler)
+	mazeAPI := router.Group("/api/v1/maze")
+	{
+		mazeAPI.POST("/", service.CreateHandler)
+		mazeAPI.DELETE("/", service.DeleteIDHandler)
+		mazeAPI.PATCH("/", service.UpdateHandler)
+		mazeAPI.GET("/", service.GetHandler)
+		mazeAPI.GET("/:maze_id", service.GetIDHandler)
+	}
 	return router
 }
