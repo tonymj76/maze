@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//Router returns the api resources
+//SetupRouter returns the api resources
 func SetupRouter(service Service) *gin.Engine {
 	router := gin.Default()
 	config := cors.DefaultConfig()
