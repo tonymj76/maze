@@ -34,7 +34,6 @@ func (r *MazeRepository) GetByMazeID(mazeID string) (*Maze, error) {
 		return nil, fmt.Errorf("%s is not a vaild _id", mazeID)
 	}
 	objID := bson.ObjectIdHex(mazeID)
-	fmt.Println(objID)
 	err := r.collection().Find(bson.M{
 		"_id": objID,
 	}).One(&maze)
@@ -60,6 +59,7 @@ func (r *MazeRepository) Update(id string, updateMaze *Maze) error {
 		return fmt.Errorf("%s is not a vaild _id", id)
 	}
 	objID := bson.ObjectIdHex(id)
+	updateMaze.ID = objID
 	return r.collection().UpdateId(objID, updateMaze)
 }
 
@@ -74,7 +74,7 @@ func (r *MazeRepository) Delete(mazeID string) error {
 		return fmt.Errorf("%s is not a vaild _id", mazeID)
 	}
 	objID := bson.ObjectIdHex(mazeID)
-	return r.collection().Remove(bson.M{"_id": objID})
+	return r.collection().RemoveId(objID)
 }
 
 // Close the session created

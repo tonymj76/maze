@@ -7,7 +7,7 @@ import (
 )
 
 // JSON serializes the api response properly to json
-func JSON(c *gin.Context, message string, status int, data interface{}, errs error) {
+func JSON(c *gin.Context, message string, status int, data interface{}, errs string) {
 	responsedata := gin.H{
 		"message": message,
 		"data":    data,
