@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -46,7 +45,6 @@ func (s *Service) UpdateHandler(c *gin.Context) {
 	repo := s.GetRepo()
 	defer repo.Close()
 	if err := repo.Update(mazeID, maze); err != nil {
-		fmt.Println(err)
 		JSON(c, "failed to update maze", http.StatusBadRequest, nil, err.Error())
 		return
 	}
